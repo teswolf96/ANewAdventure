@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by archlord on 10/5/15.
  */
-public class Character implements CombatAble{
+public class Character extends Fighter{
     private String name;
     private String charClass;
 

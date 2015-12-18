@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 /*
  * @Author: Thomas Shaw
  * @Date: 12/18/15
@@ -6,5 +7,6 @@
 public class Combat {
 	
 	
+	public LinkedList<>
 
 }
