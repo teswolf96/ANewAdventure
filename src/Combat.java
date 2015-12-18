@@ -7,6 +7,18 @@ import java.util.LinkedList;
 public class Combat {
 	
 	
-	public LinkedList<>
+	public LinkedList<Fighter> turnOrder(LinkedList<Fighter> inBattle){
+		LinkedList<Fighter> order = new LinkedList<Fighter>();
+		if(order.isEmpty()){
+			order.add(inBattle.getFirst());
+			inBattle.removeFirst();
+		}else{
+			Fighter nextChar = inBattle.getFirst();
+			
+		}
+		
+		
+		
+	}
 
 }

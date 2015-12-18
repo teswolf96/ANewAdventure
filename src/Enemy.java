@@ -6,7 +6,7 @@ public class Enemy extends Fighter{
     private String descrip;
     private int dmg;
     private int health;
-    private int agility;
+    //private int agility;
 
     public Enemy(String newName, String newDescrip, int newDmg, int newHealth, int newAgil) {
         //TODO: Automate enemy creation from file
@@ -14,7 +14,7 @@ public class Enemy extends Fighter{
         descrip = newDescrip;
         dmg = newDmg;
         health = newHealth;
-        agility= newAgil;
+        agility = newAgil;
     }
 
     public int getDmg(){

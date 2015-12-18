@@ -16,8 +16,8 @@ public class Character extends Fighter{
     private int str;
     private int strxp;
 
-    private int agl;
-    private int aglxp;
+    //private int agility;
+    private int agilityxp;
 
     private int intl;
     private int intlxp;
@@ -39,8 +39,8 @@ public class Character extends Fighter{
         dmg = newDmg;
         str = 5;
         strxp = 0;
-        agl=5;
-        aglxp=0;
+        agility=5;
+        agilityxp=0;
         intl=5;
         intlxp=0;
         cha=5;
@@ -85,12 +85,12 @@ public class Character extends Fighter{
     public int getStrXp(){ return strxp; }
     public void setStrXp(int newStrXp){ strxp = newStrXp; }
     public void addStrXp(int addXp){ strxp+=addXp; }
-    //Agl
-    public int getAgl() { return agl; }
-    public void setAgl(int newAgl){ agl = newAgl; }
-    public int getAglXp(){ return aglxp; }
-    public void setAglXp(int newAglXp){ aglxp = newAglXp; }
-    public void addAglXp(int addXp){ aglxp+=addXp; }
+    //Agility
+    public int getAgility() { return agility; }
+    public void setAgility(int newAgility){ agility = newAgility; }
+    public int getAgilityXp(){ return agilityxp; }
+    public void setAgilityXp(int newAgilityXp){ agilityxp = newAgilityXp; }
+    public void addAgilityXp(int addXp){ agilityxp+=addXp; }
     //Cha
     public int getCha() { return cha; }
     public void setCha(int newCha){ cha = newCha; }
@@ -132,7 +132,7 @@ public class Character extends Fighter{
         printMe += (charClass + "\n");
         printMe += ("Stats: \n");
         printMe += ("\tStrength: " + str + "\n");
-        printMe += ("\tAgitlity: " + agl + "\n");
+        printMe += ("\tAgitlity: " + agility + "\n");
         printMe += ("\tIntelligence: " + intl + "\n");
         printMe += ("\tCharisma: " + cha + "\n");
         printMe += ("\tWisdom: " + wis + "\n");
