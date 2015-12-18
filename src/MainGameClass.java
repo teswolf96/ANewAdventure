@@ -120,6 +120,8 @@ public class MainGameClass {
                 while(whileInGame) {
                     output.writeUTF("town");
                     Town.townMenu(playerChar, input, output);
+                    //The following commented code is testing networking code.
+                    //I'm leaving it in for now, in case I need to do more testing
                     /*
                     System.out.print("> ");
                     Scanner getCom = new Scanner(System.in);

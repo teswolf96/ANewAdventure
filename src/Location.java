@@ -10,5 +10,13 @@ public class Location {
         name = lName;
         descrip = lDescrip;
     }
+    
+    public String getName(){
+    	return name;
+    }
+    
+    public String getDescrip(){
+    	return descrip;
+    }
 
 }
