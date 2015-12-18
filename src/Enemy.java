@@ -1,7 +1,7 @@
 /**
  * Created by archlord on 10/7/15.
  */
-public class Enemy{
+public class Enemy implements CombatAble{
     private String name;
     private String descrip;
     private int dmg;
@@ -25,6 +25,9 @@ public class Enemy{
         return name;
     }
 
+    public void getTurn(){
+    	return;
+    }
     public int getHealth(){ return health; }
 
     public void modHealth(int modHealth){ health += modHealth;}

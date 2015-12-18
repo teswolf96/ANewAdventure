@@ -75,7 +75,7 @@ public class MainGameClass {
                         output.writeUTF(msg.nextLine());
                     }
                     else if(command.equalsIgnoreCase("combat")){
-                        Combat.fightSceneClient(input,output,playerChar);
+                        CombatOld.fightSceneClient(input,output,playerChar);
                     }
                     else if(command.equalsIgnoreCase("heal")){
                         playerChar.setHealth(input.read());

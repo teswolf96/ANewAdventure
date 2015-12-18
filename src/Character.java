@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by archlord on 10/5/15.
  */
-public class Character {
+public class Character implements CombatAble{
     private String name;
     private String charClass;
 
@@ -55,6 +55,10 @@ public class Character {
 
     public String getName(){
         return name;
+    }
+    
+    public void getTurn(){
+    	return;
     }
 
     public String getCharClass() { return charClass; }
