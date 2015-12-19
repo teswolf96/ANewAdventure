@@ -4,11 +4,14 @@ public class Fighter {
     protected int init;
     
     public Fighter(){
+    	agility = 10;
     	init = -1;
     }
     
     public int rollInitiative(){
-    	init =  Dice.roll(20) + (agility - 10)/2; //Standard D&D way of calculating modifiers   	
+    	int roll = Dice.roll(20);
+    	int mod = (agility - 10)/2;
+    	init =  roll + mod ; //Standard D&D way of calculating modifiers   
     	return init;
     }
     

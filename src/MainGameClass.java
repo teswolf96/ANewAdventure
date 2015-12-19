@@ -2,6 +2,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Scanner;
 public class MainGameClass {
     public static void main(String[] args) {
         System.out.println("Welcome to A New Adventure!");
-             
+        
         Boolean advance = false;
         int mainMenuChoice;
         do {
@@ -284,17 +285,17 @@ public class MainGameClass {
             int classChoice = makeChar.nextInt();
             if(classChoice == 1){
                 playerChar.setCharClass("Warrior");
-                playerChar.setStr(7);
-                playerChar.setCon(7);
-                playerChar.setIntl(3);
-                playerChar.setAgility(3);
+                playerChar.setStr(12);
+                playerChar.setCon(12);
+                playerChar.setIntl(8);
+                playerChar.setAgility(8);
                 pickedClass = true;
             } else if (classChoice == 2){
                 playerChar.setCharClass("Assassin");
-                playerChar.setAgility(7);
-                playerChar.setWis(7);
-                playerChar.setCha(3);
-                playerChar.setStr(3);
+                playerChar.setAgility(12);
+                playerChar.setWis(12);
+                playerChar.setCha(8);
+                playerChar.setStr(8);
                 pickedClass = true;
             }else{
                 System.out.println("Please choose a valid class");

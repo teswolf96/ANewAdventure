@@ -37,17 +37,17 @@ public class Character extends Fighter{
         maxhealth = newHealth;
         health = maxhealth;
         dmg = newDmg;
-        str = 5;
+        str = 10;
         strxp = 0;
-        agility=5;
+        agility=10;
         agilityxp=0;
-        intl=5;
+        intl=10;
         intlxp=0;
-        cha=5;
+        cha=10;
         chaxp=0;
-        wis=5;
+        wis=10;
         wisxp=0;
-        con=5;
+        con=10;
         conxp=0;
         inventory = new ArrayList<Item>();
 

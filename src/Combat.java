@@ -7,17 +7,31 @@ import java.util.LinkedList;
 public class Combat {
 	
 	
-	public LinkedList<Fighter> turnOrder(LinkedList<Fighter> inBattle){
+	public static LinkedList<Fighter> turnOrder(LinkedList<Fighter> inBattle){
 		LinkedList<Fighter> order = new LinkedList<Fighter>();
-		if(order.isEmpty()){
-			order.add(inBattle.getFirst());
-			inBattle.removeFirst();
-			order.getFirst().rollInitiative();
-		}else{
+		while(!inBattle.isEmpty()){			
 			Fighter nextChar = inBattle.getFirst();
+			inBattle.removeFirst();
+			int charInit = nextChar.rollInitiative();
+			if(order.isEmpty()){
+				order.addFirst(nextChar);
+			}else{
+				boolean sorted = false;
+				for(int idx=0;idx<order.size();idx++){
+					if(charInit > order.get(idx).getInit()){
+						order.add(idx, nextChar);
+						sorted = true;
+						break;
+					}
+				}
+				if(!sorted)
+					order.addLast(nextChar);
+				
+			}
+			
+			
 		}
-		
-		return null;
+			return order;
 		
 	}
 
