@@ -12,6 +12,7 @@ public class Combat {
 		if(order.isEmpty()){
 			order.add(inBattle.getFirst());
 			inBattle.removeFirst();
+			order.getFirst().rollInitiative();
 		}else{
 			Fighter nextChar = inBattle.getFirst();
 		}

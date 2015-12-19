@@ -55,7 +55,7 @@ public class MainGameClass {
             System.out.print("Server IP: ");
             String ipAddr = getIP.next();
             try {
-                myClient = new Socket(ipAddr, 6666);
+                myClient = new Socket(ipAddr, 6666); 
                 input = new DataInputStream((myClient.getInputStream()));
                 output = new DataOutputStream(myClient.getOutputStream());
 
@@ -75,7 +75,7 @@ public class MainGameClass {
                         output.writeUTF(msg.nextLine());
                     }
                     else if(command.equalsIgnoreCase("combat")){
-                        CombatOld.fightSceneClient(input,output,playerChar);
+                        CombatOld.fightSceneClient(input,output,playerChar); //DEPRICATED
                     }
                     else if(command.equalsIgnoreCase("heal")){
                         playerChar.setHealth(input.read());
@@ -120,6 +120,7 @@ public class MainGameClass {
                 while(whileInGame) {
                     output.writeUTF("town");
                     Town.townMenu(playerChar, input, output, true);
+                    
                     //The following commented code is testing networking code.
                     //I'm leaving it in for now, in case I need to do more testing
                     /*
