@@ -63,10 +63,18 @@ public class MainGameClass {
             		myClient.connect(new InetSocketAddress(ipAddr, 6666), 2000);
             	}catch(ConnectException e){
             		System.out.println("Failed to connect to server!");
+            		myClient.close();
+            		return;
+            	}catch(SocketTimeoutException e){
+            		System.out.println("Connection to server timed out!");
+            		myClient.close();
+            		return;
+            	}catch(UnknownHostException e){
+            		System.out.println("Failed to connect to server!");
+            		myClient.close();
             		return;
             	}
-            	
-                
+            	                
                 input = new DataInputStream((myClient.getInputStream()));
                 output = new DataOutputStream(myClient.getOutputStream());
 
