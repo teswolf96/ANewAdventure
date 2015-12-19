@@ -15,19 +15,16 @@ public class Town {
             System.out.println("\nYou are in Town!");
             System.out.println("What would you like to do?");
             System.out.println("1) Visit the blacksmith");
-            System.out.println("2) Hangout with your friend");
-            System.out.println("3) Stop by the inn");
-            System.out.println("4) Leave town");
+            System.out.println("2) Stop by the inn");
+            System.out.println("3) Leave town");
             System.out.print("> ");
             Scanner townScan = new Scanner(System.in);
             int choice = townScan.nextInt();
             if(choice == 1){
                 blacksmith(playerChar);
-            }else if (choice == 2){
-                hangout(playerChar, input, output, isServer);
-            }else if (choice == 3) {
-                inn(playerChar);
-            }else if(choice == 4){
+            }else if (choice == 2) {
+                inn(playerChar, input, output, isServer);
+            }else if(choice == 3){
                 System.out.println("\nNo");
             }else{
                 System.out.println("Please make a valid choice");
@@ -178,7 +175,7 @@ public class Town {
 
     }
 
-    public static void inn(Character playerChar){
+    public static void inn(Character playerChar, DataInputStream input, DataOutputStream output, boolean isServer){
         System.out.println("\nWelcome to the Inn!");
         boolean inTheInn = true;
         while (inTheInn) {
@@ -187,7 +184,8 @@ public class Town {
             System.out.println("1) Have a bite to eat");
             System.out.println("2) Save the game");
             System.out.println("3) Check your gear");
-            System.out.println("4) Leave the inn");
+            System.out.println("4) Hang out with a friend");
+            System.out.println("5) Leave the inn");
             Scanner theInn = new Scanner(System.in);
             System.out.print("> ");
             int saveChoice = theInn.nextInt();
@@ -203,6 +201,8 @@ public class Town {
                     System.out.printf("%s : %d : %d\n",curr.getName(),curr.getiClass(),curr.getValue());
                 }
             }else if(saveChoice == 4){
+            	hangout(playerChar, input, output, isServer);
+        	}else if(saveChoice == 5){
                 System.out.println("\nYou leave the inn\n");
                 inTheInn = false;
             }else{
