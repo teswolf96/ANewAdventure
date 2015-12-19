@@ -56,8 +56,17 @@ public class MainGameClass {
             Scanner getIP = new Scanner(System.in);
             System.out.print("Server IP: ");
             String ipAddr = getIP.next();
-            try {
-                myClient = new Socket(ipAddr, 6666); 
+            try {                        	
+            	myClient = new Socket();
+            	System.out.println("Attempting to connect to the server!");
+            	try{
+            		myClient.connect(new InetSocketAddress(ipAddr, 6666), 2000);
+            	}catch(ConnectException e){
+            		System.out.println("Failed to connect to server!");
+            		return;
+            	}
+            	
+                
                 input = new DataInputStream((myClient.getInputStream()));
                 output = new DataOutputStream(myClient.getOutputStream());
 

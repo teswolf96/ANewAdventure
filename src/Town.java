@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Created by archlord on 10/17/15.
+ * @author Thomas Shaw
  */
+
 public class Town {
 
     public static void townMenu(Character playerChar, DataInputStream input, DataOutputStream output, boolean isServer){
