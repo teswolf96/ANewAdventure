@@ -14,10 +14,9 @@ public class Combat {
 			inBattle.removeFirst();
 		}else{
 			Fighter nextChar = inBattle.getFirst();
-			
 		}
 		
-		
+		return null;
 		
 	}
 

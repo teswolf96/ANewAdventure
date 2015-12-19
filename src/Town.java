@@ -80,18 +80,95 @@ public class Town {
     }
 
     public static void hangout(Character playerChar, DataInputStream input, DataOutputStream output, boolean isServer){
-        System.out.println("Waiting for your friend...");
-        try {
-            output.writeUTF("hey");
-            input.readUTF();
-            output.writeUTF(playerChar.getName());
-            String player2 = input.readUTF();
-            System.out.println(player2 + " has entered!");
-            
-            if(isServer){
-            	
-            }else{
-            	
+        System.out.println("Waiting for your friend...");              
+        try {           
+            if(isServer){ //SERVER---------------------------------------
+                output.writeUTF("hey");
+                String player2 = input.readUTF();
+                output.writeUTF(playerChar.getName());
+                System.out.println(player2 + " has entered!");
+	            System.out.println("What would you like to do?");
+                System.out.println("1) Play Dice");
+                System.out.println("2) Just roll dice for fun!");
+                System.out.print("> ");
+                Scanner menu = new Scanner(System.in);
+                int menuChoice = menu.nextInt();
+                output.writeInt(menuChoice);
+                
+                if(menuChoice == 1){
+                	System.out.println("Ready to roll the dice? Guess if the number will be over or under 10!");
+                	System.out.println("Over or under?");
+	                System.out.print("> ");
+	                Scanner gameChoice = new Scanner(System.in);
+	                String choice = gameChoice.next();
+	                input.readUTF();	
+	                int dieRoll = Dice.roll(20);
+	                output.writeInt(dieRoll);
+	                System.out.println("The die rolled a " + dieRoll);
+	                if(dieRoll > 10 && choice.equalsIgnoreCase("over") || dieRoll < 10 && choice.equalsIgnoreCase("under")){
+	                	System.out.println("Correct!");
+	                }else{
+	                	System.out.println("WRONG!");
+	                }
+	                
+                }else if(menuChoice == 2){
+                	System.out.println("You chose to roll a bunch of dice!");
+                	System.out.println("How many dice do you want to roll?");
+                	Scanner diceRoll = new Scanner(System.in);
+                	System.out.print("> ");
+                	int numDice = diceRoll.nextInt();
+                	output.writeInt(numDice);
+                	System.out.println("Great! How many sides do you want on the dice?");
+                	System.out.print("> d");
+                	int diceSides = diceRoll.nextInt();
+                	output.writeInt(diceSides);
+                	for(int idx=0; idx<numDice; idx++){
+                		int roll = Dice.roll(diceSides);
+                		output.writeInt(roll);
+                		System.out.println((idx+1) + ") " + roll);
+                	}
+                	
+                	
+                }
+                
+                
+                
+            }else{ //CLIENT-----------------------------------------------
+                input.readUTF();           
+                output.writeUTF(playerChar.getName());
+                String player2 = input.readUTF();
+                System.out.println(player2 + " has entered!");
+                System.out.println("For now, only the host decides what to do. Please Wait.");
+                int menuChoice = input.readInt();
+                
+                if(menuChoice == 1){
+                	System.out.println("Your frind chose to play dice!");
+                	System.out.println("Ready to roll the dice? Guess if the number will be over or under 10!");
+	                System.out.println("Over or under?");
+	                System.out.print("> ");
+	                Scanner gameChoice = new Scanner(System.in);
+	                String choice = gameChoice.next();
+	                output.writeUTF("Picked!");
+	                int dieRoll = input.readInt();
+	                System.out.println("The die rolled a " + dieRoll);
+	                if(dieRoll > 10 && choice.equalsIgnoreCase("over") || dieRoll < 10 && choice.equalsIgnoreCase("under")){
+	                	System.out.println("Correct!");
+	                }else{
+	                	System.out.println("WRONG!");
+	                }
+                }
+                
+                if(menuChoice == 2){
+                	System.out.println("Your frind chose to roll a bunch of random dice! Because reasons.");
+                	int numDice = input.readInt();
+                	int numSides = input.readInt();
+                	System.out.println("Rolling " + numDice + "d" + numSides);
+                	for(int idx=0; idx<numDice; idx++){
+                		System.out.println((idx+1) + ") " + input.readInt());
+                	}
+
+                }
+                
             }
 
 

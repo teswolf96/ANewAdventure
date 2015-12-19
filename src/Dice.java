@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class Dice {
 
-	public int roll(int sides){
-		Random diceRoller = new Random(System.currentTimeMillis());
+	public static int roll(int sides){
+		Random diceRoller = new Random(System.nanoTime());
 		return diceRoller.nextInt(sides)+1;
 	}
 }

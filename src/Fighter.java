@@ -4,6 +4,8 @@ public class Fighter {
     
     public int getInitiative(){
     	int dexMod = (agility - 10)/2; //Standard D&D way of calculating modifiers
+    	
+    	return -1;
     }
 
 }
