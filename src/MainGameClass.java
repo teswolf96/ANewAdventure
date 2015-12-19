@@ -11,6 +11,17 @@ import java.util.Scanner;
 public class MainGameClass {
     public static void main(String[] args) {
         System.out.println("Welcome to A New Adventure!");
+        
+        System.out.println("Randomness testing! Currently putting everything else on hold");
+    	System.out.println("Creating 500 random numbers and finding the average:");
+    	double sum = 0;
+    	for(int idx=0;idx<1000;idx++){
+    		sum += (double) Dice.roll(20);
+    	}
+        sum = sum/1000.;
+        System.out.println("Result: " + sum);
+                      
+        
         Boolean advance = false;
         int mainMenuChoice;
         do {
@@ -118,9 +129,11 @@ public class MainGameClass {
 
                 boolean whileInGame = true;
                 while(whileInGame) {
-                    output.writeUTF("town");
+                                    	
+                	output.writeUTF("town");
                     Town.townMenu(playerChar, input, output, true);
                     
+                    //----------------------------------------------------------------------------------
                     //The following commented code is testing networking code.
                     //I'm leaving it in for now, in case I need to do more testing
                     /*
