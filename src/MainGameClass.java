@@ -84,7 +84,7 @@ public class MainGameClass {
                     else if(command.equalsIgnoreCase("printstats")){
                         System.out.print(playerChar.getMenu());
                     }else if(command.equalsIgnoreCase("town")){
-                        Town.townMenu(playerChar, input, output);
+                        Town.townMenu(playerChar, input, output, false);
                     }
 
 
@@ -119,7 +119,7 @@ public class MainGameClass {
                 boolean whileInGame = true;
                 while(whileInGame) {
                     output.writeUTF("town");
-                    Town.townMenu(playerChar, input, output);
+                    Town.townMenu(playerChar, input, output, true);
                     //The following commented code is testing networking code.
                     //I'm leaving it in for now, in case I need to do more testing
                     /*
@@ -189,7 +189,7 @@ public class MainGameClass {
             bufferedWriter.newLine();
             //Set up the variables to save
             int str = charToSave.getStr();
-            int agl = charToSave.getAgl();
+            int agl = charToSave.getAgility();
             int intl = charToSave.getIntl();
             int wis = charToSave.getWis();
             int cha = charToSave.getCha();
@@ -232,7 +232,7 @@ public class MainGameClass {
             //load in stats
             Scanner readStats = new Scanner(bufferedReader.readLine()).useDelimiter(", ");
             loadChar.setStr(readStats.nextInt());
-            loadChar.setAgl(readStats.nextInt());
+            loadChar.setAgility(readStats.nextInt());
             loadChar.setIntl(readStats.nextInt());
             loadChar.setWis(readStats.nextInt());
             loadChar.setCha(readStats.nextInt());
@@ -283,11 +283,11 @@ public class MainGameClass {
                 playerChar.setStr(7);
                 playerChar.setCon(7);
                 playerChar.setIntl(3);
-                playerChar.setAgl(3);
+                playerChar.setAgility(3);
                 pickedClass = true;
             } else if (classChoice == 2){
                 playerChar.setCharClass("Assassin");
-                playerChar.setAgl(7);
+                playerChar.setAgility(7);
                 playerChar.setWis(7);
                 playerChar.setCha(3);
                 playerChar.setStr(3);

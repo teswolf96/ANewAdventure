@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class Town {
 
-    public static void townMenu(Character playerChar, DataInputStream input, DataOutputStream output){
+    public static void townMenu(Character playerChar, DataInputStream input, DataOutputStream output, boolean isServer){
         boolean inTown = true;
         System.out.println("Welcome to Town!");
         while(inTown) {
@@ -24,7 +24,7 @@ public class Town {
             if(choice == 1){
                 blacksmith(playerChar);
             }else if (choice == 2){
-                hangout(playerChar, input, output);
+                hangout(playerChar, input, output, isServer);
             }else if (choice == 3) {
                 inn(playerChar);
             }else if(choice == 4){
@@ -79,7 +79,7 @@ public class Town {
 
     }
 
-    public static void hangout(Character playerChar, DataInputStream input, DataOutputStream output){
+    public static void hangout(Character playerChar, DataInputStream input, DataOutputStream output, boolean isServer){
         System.out.println("Waiting for your friend...");
         try {
             output.writeUTF("hey");
@@ -87,6 +87,12 @@ public class Town {
             output.writeUTF(playerChar.getName());
             String player2 = input.readUTF();
             System.out.println(player2 + " has entered!");
+            
+            if(isServer){
+            	
+            }else{
+            	
+            }
 
 
         } catch (IOException e) {
