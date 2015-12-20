@@ -15,10 +15,11 @@ public class Enemy extends Fighter{
         dmg = newDmg;
         health = newHealth;
         agility = newAgil;
+        super.isChar = false;
     }
 
     public int getDmg(){
-        return dmg;
+        return Dice.roll(dmg);
     }
 
     public String getName(){

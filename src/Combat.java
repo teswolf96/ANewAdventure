@@ -6,6 +6,19 @@ import java.util.LinkedList;
  */
 public class Combat {
 	
+	public static boolean combatServer(LinkedList<Fighter> sortedCombatants){
+		
+		
+		return true;
+	}
+	
+	public static boolean combatClient(LinkedList<Fighter> sortedCombatants){
+		
+		
+		return true;
+	}
+	
+	
 	
 	public static LinkedList<Fighter> turnOrder(LinkedList<Fighter> inBattle){
 		LinkedList<Fighter> order = new LinkedList<Fighter>();
@@ -25,14 +38,10 @@ public class Combat {
 					}
 				}
 				if(!sorted)
-					order.addLast(nextChar);
-				
-			}
-			
-			
+					order.addLast(nextChar);				
+			}						
 		}
-			return order;
-		
+			return order;		
 	}
 
 }

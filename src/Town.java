@@ -1,6 +1,7 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -26,7 +27,7 @@ public class Town {
             }else if (choice == 2) {
                 inn(playerChar, input, output, isServer);
             }else if(choice == 3){
-                System.out.println("\nNo");
+            	prepareToLeave(playerChar, input, output, isServer);
             }else{
                 System.out.println("Please make a valid choice");
             }
@@ -212,14 +213,38 @@ public class Town {
         }
     }
 
-    public static void prepareToLeave(Character playerChar, DataInputStream input, DataOutputStream output){
+    public static void prepareToLeave(Character playerChar, DataInputStream input, DataOutputStream output, boolean isServer){
         System.out.println("Waiting for your friend...");
         try {
+        	if(isServer){ //SERVER--------------------------------------------------        		        	
                 output.writeUTF("hey");
-                input.readUTF();
                 output.writeUTF(playerChar.getName());
-                String player2 = input.readUTF();
-                System.out.println(player2 + " has entered!");
+                String player2name = input.readUTF();
+                System.out.println(player2name + " has entered!");
+                //For now, hand make enemies
+                Enemy kobold = new Enemy("Kobold", "Adventurer Folder", 5, 5, 9);
+                Enemy mouse = new Enemy("Mouse", "It's a mouse.", 3, 5, 7);
+                Fighter player2 = new Fighter(input.readInt(), input.readInt(), true);
+                LinkedList<Fighter> unsorted = new LinkedList<>();
+                unsorted.add(kobold);
+                unsorted.add(mouse);
+                unsorted.add(player2);
+                LinkedList<Fighter> sorted = Combat.turnOrder(unsorted);
+                Combat.combatServer(sorted);
+                
+                
+                
+                
+        	}else{ //CLIENT---------------------------------------------------------
+                input.readUTF();
+                String player2name = input.readUTF();
+                output.writeUTF(playerChar.getName());
+                System.out.println(player2name + " has entered!");
+                output.writeInt(playerChar.getAgility());
+                output.writeInt(playerChar.getHealth());
+	
+        		
+        	}
 
             } catch (IOException e) {
                 e.printStackTrace();

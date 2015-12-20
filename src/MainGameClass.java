@@ -101,7 +101,7 @@ public class MainGameClass {
                         System.out.println("You have been healed! You have " + playerChar.getHealth() + " HP!");
                     }
                     else if(command.equalsIgnoreCase("printstats")){
-                        System.out.print(playerChar.getMenu());
+                        playerChar.getMenu();
                     }else if(command.equalsIgnoreCase("town")){
                         Town.townMenu(playerChar, input, output, false);
                     }

@@ -16,7 +16,7 @@ public class CombatOld {
                 System.out.println(scene);
                 sendScene(output, scene);
                 //For Testing, Server goes first
-                System.out.print(local.getMenu());
+                local.getMenu();
                 Scanner getTurn = new Scanner(System.in);
                 int yourCom = getTurn.nextInt();
                 if (yourCom == 1) {
@@ -95,7 +95,7 @@ public class CombatOld {
                     local.setHealth(input.read());
                 }
                 else if(getCom.equalsIgnoreCase("yourturn")){
-                    System.out.print(local.getMenu());
+                    local.getMenu();
                     Scanner yourMove = new Scanner(System.in);
                     int yourCom = yourMove.nextInt();
                     if (yourCom == 1) {

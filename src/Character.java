@@ -126,7 +126,7 @@ public class Character extends Fighter{
     }
     
     
-    public String getMenu(){
+    public void getMenu(){
         String printMe = new String();
         printMe += (name + "  -  " + health + " hp\n");
         printMe += (charClass + "\n");
@@ -138,7 +138,8 @@ public class Character extends Fighter{
         printMe += ("\tWisdom: " + wis + "\n");
         printMe += ("\tConstitution: " + con + "\n");
 
-        return printMe;
+        System.out.print(printMe);
+        return;
 
     }
 
