@@ -221,7 +221,10 @@ public class Town {
                 output.writeUTF(playerChar.getName());
                 String player2name = input.readUTF();
                 System.out.println(player2name + " has entered!");
-                //For now, hand make enemies
+                //For now, hand make encounter for testing purposes
+                //Step 2: RNG monsters
+                //Step 3: Zones
+                
                 Enemy kobold = new Enemy("Kobold", "Adventurer Folder", 5, 5, 9);
                 Enemy mouse = new Enemy("Mouse", "It's a mouse.", 3, 5, 7);
                 Fighter player2 = new Fighter(input.readInt(), input.readInt(), true);
@@ -231,6 +234,7 @@ public class Town {
                 unsorted.add(player2);
                 LinkedList<Fighter> sorted = Combat.turnOrder(unsorted);
                 Combat.combatServer(sorted);
+                
                 
                 
                 
