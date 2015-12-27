@@ -1,5 +1,5 @@
 /**
- * Created by archlord on 11/12/15.
+ * @author Thomas Shaw
  */
 public class Armor extends Item{
 

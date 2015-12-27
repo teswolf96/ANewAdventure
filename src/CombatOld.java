@@ -71,7 +71,7 @@ public class CombatOld {
 
 
             }catch (java.io.IOException e){
-                System.out.println(e);
+                System.out.println(e + "Problem!");
             }
         }
 

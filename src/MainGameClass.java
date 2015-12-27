@@ -2,9 +2,9 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Scanner;
 
+@SuppressWarnings("resource")
 /**
  * Name: Thomas Shaw
  */
@@ -15,7 +15,8 @@ public class MainGameClass {
 
     public static void main(String[] args) {
         System.out.println("Welcome to A New Adventure!");
-        
+        Scanner test = new Scanner(System.in);
+
         Boolean advance = false;
         int mainMenuChoice;
         do {
@@ -42,8 +43,10 @@ public class MainGameClass {
             Scanner loadName = new Scanner(System.in);
             String charName = loadName.next();
             playerChar = loadChar(charName);
+        } else {
+            System.out.println("Probelm!");
         }
-        if(playerChar == null)
+        if (playerChar == null)
             return;
 
         System.out.println("Client or server?");
@@ -59,25 +62,25 @@ public class MainGameClass {
             Scanner getIP = new Scanner(System.in);
             System.out.print("Server IP: ");
             String ipAddr = getIP.next();
-            try {                        	
-            	myClient = new Socket();
-            	System.out.println("Attempting to connect to the server!");
-            	try{
-            		myClient.connect(new InetSocketAddress(ipAddr, 6666), 2000);
-            	}catch(ConnectException e){
-            		System.out.println("Failed to connect to server!");
-            		myClient.close();
-            		return;
-            	}catch(SocketTimeoutException e){
-            		System.out.println("Connection to server timed out!");
-            		myClient.close();
-            		return;
-            	}catch(UnknownHostException e){
-            		System.out.println("Failed to connect to server!");
-            		myClient.close();
-            		return;
-            	}
-            	                
+            try {
+                myClient = new Socket();
+                System.out.println("Attempting to connect to the server!");
+                try {
+                    myClient.connect(new InetSocketAddress(ipAddr, 6666), 2000);
+                } catch (ConnectException e) {
+                    System.out.println("Failed to connect to server!");
+                    myClient.close();
+                    return;
+                } catch (SocketTimeoutException e) {
+                    System.out.println("Connection to server timed out!");
+                    myClient.close();
+                    return;
+                } catch (UnknownHostException e) {
+                    System.out.println("Failed to connect to server!");
+                    myClient.close();
+                    return;
+                }
+
                 input = new DataInputStream((myClient.getInputStream()));
                 output = new DataOutputStream(myClient.getOutputStream());
 
@@ -85,27 +88,24 @@ public class MainGameClass {
                 output.write(playerChar.getHealth());
                 //STUFF!
                 boolean whileInGame = true;
-                while(whileInGame){
+                while (whileInGame) {
                     String command = input.readUTF();
-                    if(command.equalsIgnoreCase("quit"))
+                    if (command.equalsIgnoreCase("quit"))
                         whileInGame = false;
-                    else if(command.equalsIgnoreCase("message"))
+                    else if (command.equalsIgnoreCase("message"))
                         System.out.println(input.readUTF());
-                    else if(command.equalsIgnoreCase("reply")){
+                    else if (command.equalsIgnoreCase("reply")) {
                         System.out.print("Message: ");
                         Scanner msg = new Scanner(System.in);
                         output.writeUTF(msg.nextLine());
-                    }
-                    else if(command.equalsIgnoreCase("combat")){
-                        CombatOld.fightSceneClient(input,output,playerChar); //DEPRICATED
-                    }
-                    else if(command.equalsIgnoreCase("heal")){
+                    } else if (command.equalsIgnoreCase("combat")) {
+                        CombatOld.fightSceneClient(input, output, playerChar); //DEPRICATED
+                    } else if (command.equalsIgnoreCase("heal")) {
                         playerChar.setHealth(input.read());
                         System.out.println("You have been healed! You have " + playerChar.getHealth() + " HP!");
-                    }
-                    else if(command.equalsIgnoreCase("printstats")){
+                    } else if (command.equalsIgnoreCase("printstats")) {
                         playerChar.getMenu();
-                    }else if(command.equalsIgnoreCase("town")){
+                    } else if (command.equalsIgnoreCase("town")) {
                         Town.townMenu(playerChar, input, output, false);
                     }
 
@@ -117,7 +117,7 @@ public class MainGameClass {
                 myClient.close();
 
             } catch (IOException e) {
-                System.out.println(e);
+                System.out.println("Error: " + e);
             }
 
         } else if (choice.equalsIgnoreCase("server")) {
@@ -139,11 +139,11 @@ public class MainGameClass {
                 System.out.println("Player " + player2.getName() + " has joined the game!");
 
                 boolean whileInGame = true;
-                while(whileInGame) {
-                                    	
-                	output.writeUTF("town");
+                while (whileInGame) {
+
+                    output.writeUTF("town");
                     Town.townMenu(playerChar, input, output, true);
-                    
+
                     //----------------------------------------------------------------------------------
                     //The following commented code is testing networking code.
                     //I'm leaving it in for now, in case I need to do more testing
@@ -189,17 +189,17 @@ public class MainGameClass {
                 socket.close();
                 clientSocket.close();
             } catch (java.io.IOException e) {
-                System.out.println(e);
+                System.out.println("Error: " + e);
             }
         } else {
             System.out.println("INVALID!");
         }
+        test.close();
     } //END MAIN FUNCTION
 
 
     public static void saveChar(Character charToSave) {
         String fileName = charToSave.getName();
-        String line = null;
         try {
             FileWriter fileWriter = new FileWriter(fileName);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -210,7 +210,7 @@ public class MainGameClass {
             bufferedWriter.newLine();
             int charHealth = charToSave.getHealth();
             int charDmg = charToSave.getDmg();
-            bufferedWriter.write(String.format("%d, %d",charHealth,charDmg));
+            bufferedWriter.write(String.format("%d, %d", charHealth, charDmg));
             bufferedWriter.newLine();
             //Set up the variables to save
             int str = charToSave.getStr();
@@ -220,13 +220,13 @@ public class MainGameClass {
             int cha = charToSave.getCha();
             int con = charToSave.getCon();
 
-            bufferedWriter.write(String.format("%d, %d, %d, %d, %d, %d", str, agl,intl,wis,cha,con));
+            bufferedWriter.write(String.format("%d, %d, %d, %d, %d, %d", str, agl, intl, wis, cha, con));
             bufferedWriter.newLine();
 
             ArrayList<Item> saveMe = charToSave.getInventory();
-            for(int idx=0;idx < saveMe.size();idx++){
-                    Item saveWeap = saveMe.get(idx);
-                    bufferedWriter.write(String.format("%s, %d, %d",saveWeap.getName(), saveWeap.getiClass(),saveWeap.getValue()));
+            for (int idx = 0; idx < saveMe.size(); idx++) {
+                Item saveWeap = saveMe.get(idx);
+                bufferedWriter.write(String.format("%s, %d, %d", saveWeap.getName(), saveWeap.getiClass(), saveWeap.getValue()));
             }
 
             bufferedWriter.close();
@@ -241,10 +241,8 @@ public class MainGameClass {
     } //END SAVECHAR FUNCTION
 
     public static Character loadChar(String charName) {
-        String fileName = charName;
-        String line = null;
         try {
-            FileReader fileReader = new FileReader(fileName);
+            FileReader fileReader = new FileReader(charName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String name = bufferedReader.readLine();
@@ -269,16 +267,16 @@ public class MainGameClass {
         } catch (FileNotFoundException ex) {
             System.out.println(
                     "Unable to open file '" +
-                            fileName + "'");
+                            charName + "'");
         } catch (IOException ex) {
-            System.out.println("Error reading file '" + fileName + "'");
+            System.out.println("Error reading file '" + charName + "'");
 
         }
 
         return null;
     } //END LOADCHAR
 
-    public static void sendText(String text, DataOutputStream output){
+    public static void sendText(String text, DataOutputStream output) {
         try {
             output.writeUTF("message");
             output.writeUTF(text);
@@ -288,7 +286,7 @@ public class MainGameClass {
     } //SENDS A MESSAGE
 
 
-    public static Character createChar(){
+    public static Character createChar() {
         System.out.println("Welcome to character creation!");
         System.out.println("What is your character's name?");
         System.out.print(("> "));
@@ -303,29 +301,29 @@ public class MainGameClass {
             System.out.println("2) Assassin");
             System.out.print(("> "));
             int classChoice = makeChar.nextInt();
-            if(classChoice == 1){
+            if (classChoice == 1) {
                 playerChar.setCharClass("Warrior");
                 playerChar.setStr(12);
                 playerChar.setCon(12);
                 playerChar.setIntl(8);
                 playerChar.setAgility(8);
                 pickedClass = true;
-            } else if (classChoice == 2){
+            } else if (classChoice == 2) {
                 playerChar.setCharClass("Assassin");
                 playerChar.setAgility(12);
                 playerChar.setWis(12);
                 playerChar.setCha(8);
                 playerChar.setStr(8);
                 pickedClass = true;
-            }else{
+            } else {
                 System.out.println("Please choose a valid class");
             }
-        }while(!pickedClass);
+        } while (!pickedClass);
 
 
         //set class here
-        playerChar.setHealth(10 + playerChar.getCon()-5);
-       return playerChar;
+        playerChar.setHealth(10 + playerChar.getCon() - 5);
+        return playerChar;
     }
 
 }

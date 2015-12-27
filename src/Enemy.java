@@ -27,7 +27,6 @@ public class Enemy extends Fighter{
     }
 
     public void getTurn(){
-    	return;
     }
     public int getHealth(){ return health; }
 
@@ -42,7 +41,7 @@ public class Enemy extends Fighter{
     public void setAgility(int newAgility) { agility = newAgility; }
 
     public String printMonster(){
-        String returnMe = new String();
+        String returnMe = "";
         returnMe += (name + "\n");
         returnMe += (descrip + "\n");
         returnMe += ("HP: " + health + "\n");
