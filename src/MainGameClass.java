@@ -9,7 +9,10 @@ import java.util.Scanner;
  * Name: Thomas Shaw
  */
 //Moved to github
+//Synced with laptop
+
 public class MainGameClass {
+
     public static void main(String[] args) {
         System.out.println("Welcome to A New Adventure!");
         
