@@ -19,7 +19,7 @@ public class Combat {
                 if(currTurn.getName().equalsIgnoreCase(player.getName())){
                     try {
                         output.writeUTF("player2");
-                        System.out.println("Your turn!");
+                        player.getMenu();
 
                     } catch (IOException e) {
                         e.printStackTrace();

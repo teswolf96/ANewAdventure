@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by archlord on 10/5/15.
@@ -50,6 +51,7 @@ public class Character extends Fighter{
         con=10;
         conxp=0;
         inventory = new ArrayList<Item>();
+        isChar = true;
 
     }
 
@@ -137,8 +139,22 @@ public class Character extends Fighter{
         printMe += ("\tCharisma: " + cha + "\n");
         printMe += ("\tWisdom: " + wis + "\n");
         printMe += ("\tConstitution: " + con + "\n");
+        printMe += ("Options: \n");
+        printMe += ("\t1) Generic Attack\n");
 
         System.out.print(printMe);
+
+        Scanner menu = new Scanner(System.in);
+            if(menu.nextInt() == 1){
+                System.out.println("Choose a target: ");
+                /*
+                * This needs to be fixed
+                * Should only loop through the list once
+                * More is unnecessary
+                */
+                
+
+            }
         return;
 
     }
