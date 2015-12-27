@@ -2,7 +2,7 @@
  * Created by archlord on 10/7/15.
  */
 public class Enemy extends Fighter{
-    private String name;
+    //private String name;
     private String descrip;
     private int dmg;
     private int health;

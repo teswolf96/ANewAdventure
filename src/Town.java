@@ -227,13 +227,14 @@ public class Town {
                 
                 Enemy kobold = new Enemy("Kobold", "Adventurer Folder", 5, 5, 9);
                 Enemy mouse = new Enemy("Mouse", "It's a mouse.", 3, 5, 7);
-                Fighter player2 = new Fighter(input.readInt(), input.readInt(), true);
+                Fighter player2 = new Fighter(input.readUTF(), input.readInt(), input.readInt(), true);
                 LinkedList<Fighter> unsorted = new LinkedList<>();
                 unsorted.add(kobold);
                 unsorted.add(mouse);
                 unsorted.add(player2);
+                unsorted.add(playerChar);
                 LinkedList<Fighter> sorted = Combat.turnOrder(unsorted);
-                Combat.combatServer(sorted);
+                Combat.combatServer(playerChar, sorted, input, output);
                 
                 
                 
@@ -244,9 +245,11 @@ public class Town {
                 String player2name = input.readUTF();
                 output.writeUTF(playerChar.getName());
                 System.out.println(player2name + " has entered!");
+                output.writeUTF(playerChar.getName());
                 output.writeInt(playerChar.getAgility());
                 output.writeInt(playerChar.getHealth());
-	
+
+                Combat.combatClient(input, output);
         		
         	}
 
